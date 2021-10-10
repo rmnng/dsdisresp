@@ -12,9 +12,3 @@
     `python run.py`
 
 3. Go to http://0.0.0.0:3001/
-
-
-4. Insert any message in order to classify disaster categories. See example: 
-
-![](screen1.png)
-
