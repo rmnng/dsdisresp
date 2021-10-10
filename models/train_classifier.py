@@ -8,6 +8,7 @@ import re
 import pickle
 
 import nltk
+nltk.download(['punkt', 'wordnet', 'averaged_perceptron_tagger'])
 from nltk.tokenize import word_tokenize
 from nltk.stem import WordNetLemmatizer
 from sklearn.pipeline import Pipeline, FeatureUnion
