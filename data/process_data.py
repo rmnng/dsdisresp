@@ -42,6 +42,7 @@ def load_data(messages_filepath, categories_filepath):
     for column in categories:
         # set each value to be the last character of the string
         categories[column] = categories[column].apply(lambda x:x[-1:])
+        categories[column] = categories[column].str.replace('2', '1')
         categories[column] = categories[column].astype(int)
     
     # replace column categories by columns containing value for each category
