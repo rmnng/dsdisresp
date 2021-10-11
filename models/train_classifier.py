@@ -131,24 +131,16 @@ def build_model():
         ])),
         ('cl', MultiOutputClassifier(RandomForestClassifier()))    
 
-    ])   
- 
+    ])    
     
-    # This is the place to create GridSearchCV.
-    # I commented it out due to a very long execution time of the fit function
-    
-#    parameters = {
-#        'featunion__txtpipe__v__min_df': (0.1, 0.2, 0.3),
-#        'cl__estimator__min_samples_split': (2, 3, 4),
-#        'cl__estimator__n_estimators': (50, 100, 150)
-#    }
+    # This is the place to create GridSearchCV.    
+    parameters = {
+        'featunion__txtpipe__v__min_df': (0.1, 0.2, 0.3),
+        'cl__estimator__min_samples_split': (2, 3, 4),
+        'cl__estimator__n_estimators': (50, 100, 150)
+    }
 
-#    return GridSearchCV(pipe, parameters)
-    
-    ## BTW: The best n_estimators param was 150    
-        
-    return pipe
-
+    return GridSearchCV(pipe, parameters)
 
 def evaluate_model(model, X_test, Y_test, category_names):
     """
@@ -167,15 +159,9 @@ def evaluate_model(model, X_test, Y_test, category_names):
     
     y_pred = model.predict(X_test)
         
-    score = []
     for i, col in enumerate(category_names):    
         precision, recall, fscore, support = precision_recall_fscore_support(Y_test[:, i], y_pred[:, i], average='weighted')
-        score.append(fscore)
-        print("f-score for category {} is {}".format(colored(col, 'red'), colored(fscore, 'blue')))
-
-    #average of all f1 scores
-    print("{}".format(colored('================================================', 'green')))
-    print("average f-score for all columns is {}".format(colored(sum(score)/len(score), 'red', attrs=['bold'])))    
+        print("Category {}: -> precision: {}, recall: {}, f-score: {}".format(colored(col, 'red'), colored(precision, 'blue'), colored(recall, 'blue'), colored(fscore, 'blue')))
     
 
 def save_model(model, model_filepath):    
