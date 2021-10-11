@@ -155,57 +155,9 @@ def index():
     ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
     graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
     
-    print('hey')
-    print(graphJSON)
-    
     # render web page with plotly graphs
     return render_template('master.html', ids=ids, graphJSON=graphJSON)
 #    return render_template('test.html', ids=ids, graphJSON=graphJSON)
-
-# index webpage displays cool visuals and receives user input text for model
-@app.route('/i22')
-@app.route('/index22')
-def index22():
-    
-    # extract data needed for visuals
-    # TODO: Below is an example - modify to extract data for your own visuals
-    genre_counts = df.groupby('genre').count()['message']
-    genre_names = list(genre_counts.index)
-    
-    
-    categories =  df[df.columns[4:]]
-    cat_counts = (categories.mean()*categories.shape[0]).sort_values(ascending=False)
-    cat_names = list(cat_counts.index)   
-      
-    # create visuals
-    # TODO: Below is an example - modify to create your own visuals
-    graphs = [
-        {
-            'data': [
-                Bar(
-                    x=genre_names,
-                    y=genre_counts
-                )
-            ],
-
-            'layout': {
-                'title': 'Distribution of Message Genres',
-                'yaxis': {
-                    'title': "Count"
-                },
-                'xaxis': {
-                    'title': "Genre"
-                }
-            }        
-        }
-    ]
-    
-    # encode plotly graphs in JSON
-    ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
-    graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
-    
-    # render web page with plotly graphs
-    return render_template('master.html', ids=ids, graphJSON=graphJSON)
 
 # web page that handles user query and displays model results
 @app.route('/go')
