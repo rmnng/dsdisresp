@@ -20,7 +20,7 @@ The project is divided into three main sections:
 - SQLlite Database Libraqries: SQLalchemy
 - Machine Learning Libraries: Pandas, NumPy, Sciki-Learn
 - Natural Language Process Libraries: NLTK
-- Web App and Data Visualization: Plotly, Flask
+- Web App and Data Visualization: Plotly (plotly-2.4.2, src="https://cdn.plot.ly/plotly-2.4.2.min.js"), Flask
 
 ### Steps to execute
 1. Run the following commands in the project's root directory to set up the database and model.
@@ -39,6 +39,10 @@ The project is divided into three main sections:
 4. Insert any message in order to classify disaster categories. See example: 
 
 ![](screen1.png)
+
+## Dataset:
+Provided by the company Figure Eight. Some insights:
+![](screen_dataset.png)
 
 ## Acknowledgment:
 Thanks Udacity for the inspiration and Figure Eight for the dataset. 
